@@ -29,3 +29,31 @@ body {
   background-color: #4CAF50;
   color: white;
 }
+
+#container-border {
+  border-radius: 30px;
+  background: #707070;
+  padding: 50px;
+  width: 350px;
+  height: 450px;
+}
+
+.container {
+  margin-left: 35%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#login-border {
+  border-radius: 30px;
+  background: #fff;
+  padding: 1px;
+  width: 350px;
+  height: 50px;
+}
+
+.login-text{
+  color: black;
+  margin-left: 10px;
+
+}

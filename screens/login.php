@@ -15,10 +15,11 @@
  <a href="#signup">Sign up</a>
 </div>
 
-  <div class="container">
+
+  <div class="container" id="container-border">
     <div class="row">
-      <div class="col-md-6">
-        <h2>Login</h2>
+      <div class="col-md-6" id="login-border">
+        <h2 class="login-text">Login</h2>
         <form action="validation.php" method="post">
           <div class="form-group">
             <label>Username</label>
