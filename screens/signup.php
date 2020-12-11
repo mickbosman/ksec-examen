@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="topnav">
- <a href="#home">Home</a>
+ <a href="main.php">Home</a>
  <a href="#news">News</a>
  <a href="#contact">Contact</a>
  <a href="#about">About</a>
@@ -31,7 +31,7 @@
         <div class="form-group" id="form-group-4">
          <label>Email</label>
           <input type="text" name="email" class="form-control" id="form-control" required>
-        </div> 
+        </div>
         <div class="form-group" id="form-group-4">
           <label>Password</label>
           <input type="password" name="password" class="form-control" id="form-control" required>
