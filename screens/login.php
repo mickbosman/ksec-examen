@@ -19,17 +19,17 @@
   <div class="container" id="container-border">
     <div class="row">
       <div class="col-md-6" id="login-border">
-        <h2 class="login-text">Login</h2>
+        <p class="login-text">Welcome to … please login to your account</p>
         <form action="validation.php" method="post">
-          <div class="form-group">
+          <div class="form-group" id="form-group-1">
             <label>Username</label>
-            <input type="text" name="user" class="form-control" required>
+            <input type="text" name="user" class="form-control" id="form-control" required>
           </div>
-          <div class="form-group">
+          <div class="form-group" id="form-group-2">
             <label>Password</label>
-            <input type="text" name="user" class="form-control" required>
+            <input type="text" name="user" class="form-control" id="form-control" required>
           </div>
-          <button type="submit" name="button" class="btn btn-primary">Login</button>
+          <button type="submit" name="button" class="btn-primary">Login</button>
         </form>
 
       </div>
