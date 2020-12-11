@@ -13,18 +13,16 @@ $email = $_POST['email'];
 $pass = password_hash($pass, PASSWORD_DEFAULT);
 
 
-$s = " select * from usertable where name = '$name'";
+$s = " select * from usertable where name = '$name' && password = '$pass'";
 
 $result = mysqli_query($con, $s);
 
 $num = mysqli_num_rows($result);
 
 if($num == 1){
-  echo "Username Already Taken";
+  header('location:home.php');
 } else {
-  $reg = "insert into usertable(name , password , email) values ('$name', '$pass', '$email')";
-  mysqli_query($con, $reg);
-  echo "Registration successful";
+  header('location:login.php');
 }
 
  ?>
