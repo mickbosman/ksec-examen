@@ -24,21 +24,21 @@
           <label>Username</label>
           <input type="text" name="user" class="form-control" id="form-control" required>
         </div>
-        <div class="form-group" id="form-group-4">
-          <label>Email</label>
+         <div class="form-group" id="form-group-4">
+         <label>Email</label>
           <input type="text" name="email" class="form-control" id="form-control" required>
         </div>
         <div class="form-group" id="form-group-4">
-          <label>Email</label>
+         <label>Email</label>
           <input type="text" name="email" class="form-control" id="form-control" required>
+        </div> 
+        <div class="form-group" id="form-group-4">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" id="form-control" required>
         </div>
         <div class="form-group" id="form-group-4">
           <label>Password</label>
-          <input type="text" name="password" class="form-control" id="form-control" required>
-        </div>
-        <div class="form-group" id="form-group-4">
-          <label>Password</label>
-          <input type="text" name="password2" class="form-control" id="form-control" required>
+          <input type="password" name="password2" class="form-control" id="form-control" required>
         </div>
 
 
