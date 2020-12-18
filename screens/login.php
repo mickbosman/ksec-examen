@@ -29,7 +29,7 @@
             <label>Password</label>
             <input type="password" name="password" class="form-control" id="form-control" required>
           </div>
-          <p><a href="vergeten.php" class="Wachtwoord-vergeten">Wachtwoord vergeten</a></p>
+          <div class="Wachtwoord-vergeten"><a href="vergeten.php" >Wachtwoord vergeten</a></div>
           <button type="submit" name="button" class="btn-primary">Login</button>
         </form>
 
