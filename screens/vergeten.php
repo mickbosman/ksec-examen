@@ -23,11 +23,11 @@
         <div class="col-md-6" id="wachtwoord-border">
         <p class="wachtwoord-text">Don't worry, just enter your email and we will send a new password to your email!</p></div>
         <form action="validation.php" method="post">
-          <div class="form-group" id="form-group-1">
+          <div class="form-group" id="form-group-10">
             <label>Email</label>
             <input type="text" name="user" class="form-control" id="form-control" required>
           </div>
-          <button type="submit" name="button" class="btn-primary">Submit</button>
+          <button type="submit" name="button" class="btn-primary-1">Submit</button>
         </form>
 
       </div>

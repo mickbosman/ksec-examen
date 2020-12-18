@@ -95,7 +95,7 @@ body {
   border-radius: 30px;
   width: 200px;
   height: 50px;
-  margin-top: 30%;
+  margin-top: 25%;
   margin-left: 20%;
 }
 
@@ -146,4 +146,16 @@ footer nav a:hover {
   height: 100px;
   margin-left: 7%;
   margin-top: 20px;
+}
+
+.btn-primary-1{
+  border-radius: 30px;
+  width: 200px;
+  height: 50px;
+  margin-top: 30%;
+  margin-left: 20%;
+}
+
+#form-group-10{
+  padding-top: 20%;
 }
