@@ -127,3 +127,22 @@ footer nav a {
 footer nav a:hover {
   color: grey;
 }
+
+.Wachtwoord-vergeten{
+  padding-left: 25%;
+}
+
+.wachtwoord-text{
+  color: black;
+  margin-left: 10px;
+}
+
+#wachtwoord-border{
+  border-radius: 30px;
+  background: #fff;
+  padding: 1px;
+  width: 300px;
+  height: 100px;
+  margin-left: 7%;
+  margin-top: 20px;
+}
