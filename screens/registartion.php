@@ -11,6 +11,7 @@ $name = $_POST['user'];
 $pass = $_POST['password'];
 $email = $_POST['email'];
 
+$hashedpass = password_hash($pass, PASSWORD_DEFAULT);
 
 $s = " select * from usertable where name = '$name'";
 

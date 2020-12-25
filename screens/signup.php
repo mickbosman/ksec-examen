@@ -1,3 +1,9 @@
+<?php
+
+include_once('header.php')
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -6,14 +12,6 @@
     <title>VideoBox</title>
   </head>
   <body>
-    <div class="topnav">
- <a href="#home">Home</a>
- <a href="#news">News</a>
- <a href="#contact">Contact</a>
- <a href="#about">About</a>
- <a href="login.php">Login</a>
- <a class="active" href="signup.php">Sign up</a>
-</div>
 
 <div class="container" id="container-border">
   <div class="row">
@@ -31,14 +29,14 @@
         <div class="form-group" id="form-group-4">
          <label>Email</label>
           <input type="text" name="email" class="form-control" id="form-control" required>
-        </div> 
+        </div>
         <div class="form-group" id="form-group-4">
           <label>Password</label>
           <input type="password" name="password" class="form-control" id="form-control" required>
         </div>
         <div class="form-group" id="form-group-4">
           <label>Password</label>
-          <input type="password" name="password2" class="form-control" id="form-control" required>
+          <input type="password" name="cPassword" class="form-control" id="form-control" required>
         </div>
 
 
