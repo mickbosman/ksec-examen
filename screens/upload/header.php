@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="topnav">
- <a href="video.php">Home</a>
+ <a href="home.php" class="active">Home</a>
  <a href="news.php">News</a>
  <a href="contact.php">Contact</a>
  <a href="about.php">About</a>

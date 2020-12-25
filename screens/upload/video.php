@@ -1,3 +1,9 @@
+<?php
+
+include_once('header.php')
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -6,15 +12,6 @@
     <title>VideoBox</title>
   </head>
   <body>
-    <div class="topnav">
- <a class="active" href="#home">Home</a>
- <a href="#news">News</a>
- <a href="#contact">Contact</a>
- <a href="#about">About</a>
- <a href="login.php">Login</a>
- <a href="signup.php">Sign up</a>
-</div>
-
 
 
 <?php
@@ -47,7 +44,7 @@ while ($row = mysqli_fetch_assoc($res)) {
  ?>
 
 
- 
+
 
     </body>
   </html>
