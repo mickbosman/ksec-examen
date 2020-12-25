@@ -17,7 +17,7 @@ include_once('../header.php')
     <div class="row">
       <div class="col-md-6" id="login-border">
         <p class="login-text">Welcome to … please login to your account</p>
-        <form action="validation.php" method="post">
+        <form action="../validation.php" method="post">
           <div class="form-group" id="form-group-1">
             <label>Username</label>
             <input type="text" name="user" class="form-control" id="form-control" required>
