@@ -1,13 +1,13 @@
 <?php
 
-include_once('header.php')
+include_once('../header.php')
 
  ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <meta charset="utf-8">
     <title>VideoBox</title>
   </head>
