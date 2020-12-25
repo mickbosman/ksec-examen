@@ -1,5 +1,8 @@
 <?php
 
-$con = mysqli_connect('localhost','root','','vuad');
+$con = mysqli_connect('localhost', 'root', '');
+
+mysqli_select_db($con, 'ksec');
+
 
 ?>
