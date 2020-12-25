@@ -1,9 +1,3 @@
-<?php
-
-include_once('header.php')
-
- ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -12,22 +6,28 @@ include_once('header.php')
     <title>VideoBox</title>
   </head>
   <body>
+    <div class="topnav">
+ <a href="main.php">Home</a>
+ <a href="#news">News</a>
+ <a href="#contact">Contact</a>
+ <a href="#about">About</a>
+ <a class="active" href="#login">Login</a>
+ <a href="signup.php">Sign up</a>
+</div>
+
 
   <div class="container" id="container-border">
     <div class="row">
       <div class="col-md-6" id="login-border">
-        <p class="login-text">Welcome to … please login to your account</p>
+        <p class="login-text">Forgot your password?</p>
+        <div class="col-md-6" id="wachtwoord-border">
+        <p class="wachtwoord-text">Don't worry, just enter your email and we will send a new password to your email!</p></div>
         <form action="validation.php" method="post">
-          <div class="form-group" id="form-group-1">
-            <label>Username</label>
+          <div class="form-group" id="form-group-10">
+            <label>Email</label>
             <input type="text" name="user" class="form-control" id="form-control" required>
           </div>
-          <div class="form-group" id="form-group-2">
-            <label>Password</label>
-            <input type="password" name="password" class="form-control" id="form-control" required>
-          </div>
-          <div class="Wachtwoord-vergeten"><a href="vergeten.php" >Wachtwoord vergeten</a></div>
-          <button type="submit" name="button" class="btn-primary">Login</button>
+          <button type="submit" name="button" class="btn-primary-1">Submit</button>
         </form>
 
       </div>
@@ -35,6 +35,7 @@ include_once('header.php')
     </div>
 
   </div>
+
 
   <footer>
       <div class="footer_wrapper">
