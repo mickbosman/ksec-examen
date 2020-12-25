@@ -9,6 +9,10 @@
 <form method="post" action="index.php" enctype="multipart/form-data"></from>
 
 <input type="file" name="file">
+<div class="form-group" id="form-group-1">
+  <label>Description</label>
+  <input type="text" name="description" class="form-control" id="form-control" required>
+</div>
 <input type="submit" name="upload" value="UPLOAD">
 
 </from>
@@ -21,13 +25,14 @@ include ('db.php');
 
 if (isset($_POST['upload'])) {
 
+  $description = $_POST['description'];
   $name = $_FILES['file']['name'];
   $tmp = $_FILES['file']['tmp_name'];
 
 
   move_uploaded_file($tmp, "videos/".$name);
 
-  $sql = "INSERT INTO videos (name) VALUES('$name')";
+  $sql = "INSERT INTO videos (name, description) VALUES('$name', '$description')";
 
   $res = mysqli_query($con,$sql);
 
