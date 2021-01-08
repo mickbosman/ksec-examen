@@ -28,13 +28,16 @@ while ($row = mysqli_fetch_assoc($res)) {
 
       $id = $row['id'];
       $name= $row['name'];
-
+      $description= $row['description'];
 ?>
+<div class="videobox">
 
-<video width="300" height="200" controls>
+<video width="400px" controls>
   <source src="videos/<?php echo $name; ?>" type="video/mp4">
-
 </video>
+<p>Name: <?php echo $row['name']; ?></p>
+<p>Description: <?php echo $row['description']; ?></p>
+</div>
 
 <?php
 
