@@ -1,7 +1,14 @@
+<?php
+
+include_once('../header-2.php')
+
+ ?>
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>video upload</title>
+    <link rel="stylesheet" href="../../css/style-2.css">
   </head>
   <body>
 <h1> <a href="video.php">VIDEOS</a></h1>

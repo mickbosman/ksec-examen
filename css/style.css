@@ -99,6 +99,7 @@ body {
   margin-left: 20%;
 }
 
+/*
 footer {
   background-image: url(../img/footer.jpg);
   font-family: 'Arial', sans-serif;
@@ -127,6 +128,7 @@ footer nav a {
 footer nav a:hover {
   color: grey;
 }
+*/
 
 .Wachtwoord-vergeten{
   padding-left: 27%;

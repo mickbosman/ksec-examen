@@ -34,7 +34,7 @@ include_once('../header.php')
 
   </div>
 
-
+<!--
   <footer>
       <div class="footer_wrapper">
         <nav class="footer-nav">
@@ -48,7 +48,7 @@ include_once('../header.php')
         </nav>
       </div>
     </footer>
-
+-->
 
   </body>
 </html>
