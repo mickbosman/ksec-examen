@@ -11,6 +11,7 @@ include_once('header.php')
     <title>video upload</title>
   </head>
   <body>
+
 <div class="borderuploader">
 
 <form method="post" action="uploader.php" enctype="multipart/form-data"></from>

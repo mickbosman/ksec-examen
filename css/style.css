@@ -44,14 +44,15 @@ body {
 .videobox {
   margin-left: 8%;
   float: left;
-  height: 500px;
+  height: 350px;
   width: 400px;
   border: 5px solid white;
   color: white;
+  margin-top: 100px;
 }
 
 .borderuploader {
-  margin-left: 200px;
+  margin-left: 30%;
   border: 1px solid white;
 }
 
@@ -59,8 +60,8 @@ body {
   float: right;
   margin-right: 20px;
 }
-/*  LOGIN  */
 
+/*  LOGIN  */
 .login {
   	width: 400px;
   	background-color: #ffffff;
