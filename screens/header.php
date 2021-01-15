@@ -1,11 +1,11 @@
 <?php
 // We need to use sessions, so you should always start sessions using the below code.
-session_start();
+//session_start();
 // If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.php');
-	exit;
-}
+//if (!isset($_SESSION['loggedin'])) {
+//	header('Location: index.php');
+	//exit;
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -23,7 +23,7 @@ if (!isset($_SESSION['loggedin'])) {
 </div>
 <div class="right">
 
-<p>Welcome back, <?=$_SESSION['name']?>!</p>
+
 
 </div>
 </div>
