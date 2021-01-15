@@ -52,8 +52,12 @@ body {
 }
 
 .borderuploader {
-  margin-left: 30%;
-  border: 1px solid white;
+  width: 400px;
+  background-color: #121212;
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  margin: 100px auto;
+  border: 1px solid #dee0e4;
+  text-align: center;
 }
 
 .right {
@@ -68,6 +72,7 @@ body {
   	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
   	margin: 100px auto;
 }
+
 .login h1 {
   	text-align: center;
   	color: #5b6574;
