@@ -11,21 +11,20 @@ include_once('../header-2.php')
     <link rel="stylesheet" href="../../css/style-2.css">
   </head>
   <body>
-<h1> <a href="video.php">VIDEOS</a></h1>
+
+<div class="container" id="container-border">
+<h1>Upload your video</h1>
 
 <form method="post" action="index.php" enctype="multipart/form-data"></from>
 
-<input type="file" name="file">
+<input type="file" name="file" id="upload_button">
 <div class="form-group" id="form-group-1">
   <label>Description</label>
-  <input type="text" name="description" class="form-control" id="form-control" required>
+  <input type="text" name="description" class="form-control" id="form-control" id="description" required>
 </div>
-<input type="submit" name="upload" value="UPLOAD">
+<input type="submit" name="upload" value="UPLOAD" id="upload_button_2">
 
 </from>
-
-  </body>
-</html>
 
 <?php
 include ('db.php');
@@ -49,3 +48,7 @@ if (isset($_POST['upload'])) {
 }
 
  ?>
+</div>
+
+</body>
+</html>
