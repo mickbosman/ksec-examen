@@ -1,51 +1,57 @@
 <?php
 include 'main.php';
-// Now we check if the data was submitted, isset() function will check if the data exists.
+// Controle of alle data is ingevuld
 if (!isset($_POST['username'], $_POST['password'], $_POST['cpassword'], $_POST['email'])) {
-	// Could not get the data that should have been sent.
+	// Bericht als dat niet zo is
 	exit('Please complete the registration form!');
 }
-// Make sure the submitted registration values are not empty.
+// Check of er niks leeg is gelaten
 if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email'])) {
-	// One or more values are empty.
+	// Bericht als dat wel zo is
 	exit('Please complete the registration form');
 }
-// Check to see if the email is valid.
+// Check of de email juist is
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 	exit('Email is not valid!');
 }
-// Username must contain only characters and numbers.
+// Username mag alleen deze tekens bevatten
 if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['username'])) {
     exit('Username is not valid!');
 }
-// Password must be between 5 and 20 characters long.
+// Het wachtwoord moet tussen de 5 en 20 letters zijn
 if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
 	exit('Password must be between 5 and 20 characters long!');
 }
-// Check if both the password and confirm password fields match
+// Het wachtwoord mag alleen deze tekens bevatten
+if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['password'])) {
+	exit('Password is not valid!');
+}
+// Check of allebij de wachtwoord velden gelijk zijn
 if ($_POST['cpassword'] != $_POST['password']) {
 	exit('Passwords do not match!');
 }
-// Check if the account with that username already exists
+// Check of er al een account is met deze naam
 $stmt = $pdo->prepare('SELECT id, password FROM accounts WHERE username = ? OR email = ?');
 $stmt->execute([ $_POST['username'], $_POST['email'] ]);
 $account = $stmt->fetch(PDO::FETCH_ASSOC);
-// Store the result so we can check if the account exists in the database.
+
 if ($account) {
-	// Username already exists
+	// Als de naam al bestaat
 	echo 'Username and/or email exists!';
 } else {
-	// Username doesnt exists, insert new account
+	// Als de naam niet bestaat, Maak hem dan aan
 	$stmt = $pdo->prepare('INSERT INTO accounts (username, password, email, activation_code) VALUES (?, ?, ?, ?)');
-	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
+	// Wachtwoord hash
 	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	$uniqid = account_activation ? uniqid() : 'activated';
 	$stmt->execute([ $_POST['username'], $password, $_POST['email'], $uniqid ]);
 	if (account_activation) {
 		// Account activation required, send the user the activation email with the "send_activation_email" function from the "main.php" file
+		// email verificatie
 		send_activation_email($_POST['email'], $uniqid);
 		echo 'Please check your email to activate your account!';
 	} else {
+		// Als alles goed is kan er worden ingelogd met het account
 		echo 'You have successfully registered, you can now login!';
 	}
 }
