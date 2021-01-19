@@ -26,41 +26,56 @@ check_loggedin($pdo);
 		<div class="content">
 			<h2>Home Page</h2>
 			<p class="block">Welcome back, <?=$_SESSION['name']?>!</p>
+			<?php
 
+
+			include ('db.php');
+			include_once 'config.php';
+
+			$sql = "select * from videos";
+			$res = mysqli_query($db,$sql);
+
+			while ($row = mysqli_fetch_assoc($res)) {
+
+
+				$id = $row['id'];
+				$name= $row['name'];
+				$description= $row['description'];
+			?>
+			<div class="videobox">
+
+				<center>
+			<video width="600px" height="300px" controls>
+			<source src="videos/<?php echo $name; ?>" type="video/mp4">
+			</video>
+		</center>
+			<p><?=$_SESSION['name']?></p>
+			<p>Title: <?php echo $row['title']; ?></p>
+			<p>Description: <?php echo $row['description']; ?></p>
+
+			</div>
+
+			<style media="screen">
+			.videobox{
+			color: white;
+			background-color: #484848;
+			width: 100%;
+			}
+			video{
+				border: 1px solid black;
+				background-color: black;
+			}
+			</style>
+
+			<?php
+
+			}
+
+
+			?>
 		</div>
 
-				<?php
 
-
-				include ('db.php');
-				include_once 'config.php';
-
-				$sql = "select * from videos";
-				$res = mysqli_query($conn,$sql);
-
-		while ($row = mysqli_fetch_assoc($res)) {
-
-
-		      $id = $row['id'];
-		      $name= $row['name'];
-		      $description= $row['description'];
-		?>
-		<div class="videobox">
-
-		<video width="400px" height="225px" controls>
-		  <source src="videos/<?php echo $name; ?>" type="video/mp4">
-		</video>
-		<p><?=$_SESSION['name']?></p>
-		<p>Title: <?php echo $row['title']; ?></p>
-		<p>Description: <?php echo $row['description']; ?></p>
-		</div>
-
-		<?php
-
-		}
-
-
-		 ?>
 
 	</body>
 </html>
