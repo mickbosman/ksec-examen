@@ -55,13 +55,14 @@ check_loggedin($pdo);
 include ('db.php');
 
 if (isset($_POST['upload'])) {
-  $log = "User uploaded a file";
-  logger($log);
 
   $tmp = $_FILES['file']['tmp_name'];
   $description = $_POST['description'];
   $title = $_POST['title'];
   $name = $_FILES['file']['name'];
+
+  $log = "User uploaded a file: $title , $name , $description";
+  logger($log);
 
 
   move_uploaded_file($tmp, "videos/".$name);

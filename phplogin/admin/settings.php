@@ -24,18 +24,44 @@ while($data = mysqli_fetch_array($records))
 {
 ?>
 <div class="">
+  <div class="videobox">
   <tr>
     <video width="400px" height="225px" controls>
 		  <source src="../videos/<?php echo $data['name']; ?>" type="video/mp4">
 		</video>
-    <td><?php echo $data['id']; ?></td>
-    <td><?php echo $data['name']; ?></td>
-    <td><?php echo $data['title']; ?></td>
-    <td><?php echo $data['description']; ?></td>
+    <td>ID=<?php echo $data['id']; ?></td>
+    <td><br></td>
+    <td><br></td>
+    <td>Name=<?php echo $data['name']; ?></td>
+    <td><br></td>
+    <td><br></td>
+    <td>Title=<?php echo $data['title']; ?></td>
+    <td><br></td>
+    <td><br></td>
+    <td>Description=<?php echo $data['description']; ?></td>
+    <td><br></td>
+    <td><br></td>
     <td><a href="../edit.php?id=<?php echo $data['id']; ?>">Edit</a></td>
     <td><a href="../delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
   </tr>
   </div>
+</div>
+
+<style media="screen">
+.videobox{
+color: white;
+background-color: #484848;
+width: 400px;
+height: 450px;
+margin-bottom: 10px;
+}
+
+
+video{
+  border: 1px solid black;
+  background-color: black;
+}
+</style>
 <?php
 }
 ?>
