@@ -7,7 +7,7 @@ check_loggedin($pdo);
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,minimum-scale=1">
-		<title>Videobox</title>
+		<title>Home Page</title>
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
@@ -26,6 +26,41 @@ check_loggedin($pdo);
 		<div class="content">
 			<h2>Home Page</h2>
 			<p class="block">Welcome back, <?=$_SESSION['name']?>!</p>
+
 		</div>
+
+				<?php
+
+
+				include ('db.php');
+				include_once 'config.php';
+
+				$sql = "select * from videos";
+				$res = mysqli_query($conn,$sql);
+
+		while ($row = mysqli_fetch_assoc($res)) {
+
+
+		      $id = $row['id'];
+		      $name= $row['name'];
+		      $description= $row['description'];
+		?>
+		<div class="videobox">
+
+		<video width="400px" height="225px" controls>
+		  <source src="videos/<?php echo $name; ?>" type="video/mp4">
+		</video>
+		<p><?=$_SESSION['name']?></p>
+		<p>Title: <?php echo $row['title']; ?></p>
+		<p>Description: <?php echo $row['description']; ?></p>
+		</div>
+
+		<?php
+
+		}
+
+
+		 ?>
+
 	</body>
 </html>

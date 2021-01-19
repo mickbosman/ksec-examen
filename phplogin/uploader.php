@@ -1,8 +1,7 @@
 <?php
-
-include_once('header.php')
-
- ?>
+include 'main.php';
+check_loggedin($pdo);
+?>
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +10,6 @@ include_once('header.php')
     <title>video upload</title>
   </head>
   <body>
-
 <div class="borderuploader">
 
 <form method="post" action="uploader.php" enctype="multipart/form-data"></from>
@@ -33,7 +31,7 @@ include_once('header.php')
 </html>
 
 <?php
-include ('../db.php');
+include ('db.php');
 
 if (isset($_POST['upload'])) {
 
@@ -43,9 +41,9 @@ if (isset($_POST['upload'])) {
   $name = $_FILES['file']['name'];
 
 
-  move_uploaded_file($tmp, "../uploaded-videos/".$name);
+  move_uploaded_file($tmp, "videos/".$name);
 
-  $sql = "INSERT INTO videos (name, title, description) VALUES('$name','$title', '$description')";
+  $sql = "INSERT INTO videos (username, name, title, description) VALUES(?,'$name','$title', '$description')";
 
   $res = mysqli_query($conn,$sql);
 

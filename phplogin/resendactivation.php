@@ -1,6 +1,6 @@
 <?php
 include 'main.php';
-// Uitvoerbericht
+// Output message
 $msg = '';
 // Now we check if the email from the resend activation form was submitted, isset() will check if the email exists.
 if (isset($_POST['email'])) {
