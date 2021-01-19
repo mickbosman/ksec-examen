@@ -1,7 +1,10 @@
 <?php
 
-$conn = mysqli_connect('localhost', 'root', '');
+$db = mysqli_connect("localhost","root","","phplogin");
 
-mysqli_select_db($conn, 'phplogin');
+if(!$db)
+{
+    die("Connection failed: " . mysqli_connect_error());
+}
 
  ?>
