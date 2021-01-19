@@ -43,7 +43,7 @@ if (isset($_POST['upload'])) {
 
   move_uploaded_file($tmp, "videos/".$name);
 
-  $sql = "INSERT INTO videos (username, name, title, description) VALUES(?,'$name','$title', '$description')";
+  $sql = "INSERT INTO videos (name, title, description) VALUES('$name','$title', '$description')";
 
   $res = mysqli_query($conn,$sql);
 
