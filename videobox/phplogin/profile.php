@@ -87,10 +87,10 @@ if (isset($_POST['username'], $_POST['password'], $_POST['cpassword'], $_POST['e
 						<td>Email:</td>
 						<td><?=$account['email']?></td>
 					</tr>
-					<!-- <tr>
+					<tr>
 						<td>Role:</td>
 						<td><?=$account['role']?></td>
-					</tr> -->
+					</tr>
 				</table>
 				<a class="profile-btn" href="profile.php?action=edit">Edit Details</a>
 			</div>
