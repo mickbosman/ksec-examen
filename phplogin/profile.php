@@ -70,6 +70,12 @@ if (isset($_POST['username'], $_POST['password'], $_POST['cpassword'], $_POST['e
 				<?php if ($_SESSION['role'] == 'Admin'): ?>
 				<a href="admin/index.php" target="_blank"><i class="fas fa-user-cog"></i>Admin</a>
 				<?php endif; ?>
+				<?php if ($_SESSION['role'] == "Admin"): ?>
+	      <a href="uploader.php" target="_blank"><i class="fas fa-file-upload"></i>Uploader</a>
+	      <?php endif; ?>
+	      <?php if ($_SESSION['role'] == "Member"): ?>
+	      <a href="uploader.php" target="_blank"><i class="fas ffa-file-upload"></i>Uploader</a>
+	      <?php endif; ?>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
@@ -90,7 +96,7 @@ if (isset($_POST['username'], $_POST['password'], $_POST['cpassword'], $_POST['e
 					 <tr>
 						<td>Role:</td>
 						<td><?=$account['role']?></td>
-					</tr> 
+					</tr>
 				</table>
 				<a class="profile-btn" href="profile.php?action=edit">Edit Details</a>
 			</div>

@@ -20,6 +20,12 @@ check_loggedin($pdo);
 				<?php if ($_SESSION['role'] == 'Admin'): ?>
 				<a href="admin/index.php" target="_blank"><i class="fas fa-user-cog"></i>Admin</a>
 				<?php endif; ?>
+				<?php if ($_SESSION['role'] == "Admin"): ?>
+	      <a href="uploader.php" target="_blank"><i class="fas fa-file-upload"></i>Uploader</a>
+	      <?php endif; ?>
+	      <?php if ($_SESSION['role'] == "Member"): ?>
+	      <a href="uploader.php" target="_blank"><i class="fas fa-file-upload"></i>Uploader</a>
+	      <?php endif; ?>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
@@ -58,7 +64,7 @@ check_loggedin($pdo);
 			<style media="screen">
 			.videobox{
 			color: white;
-			background-color: #484848;
+			background-color: #2f3947;
 			width: 100%;
 			}
 			video{

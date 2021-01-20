@@ -23,10 +23,10 @@ check_loggedin($pdo);
       <a href="admin/index.php" target="_blank"><i class="fas fa-user-cog"></i>Admin</a>
       <?php endif; ?>
       <?php if ($_SESSION['role'] == "Admin"): ?>
-      <a href="uploader.php" target="_blank"><i class="fas fa-user-cog"></i>Uploader</a>
+      <a href="uploader.php" target="_blank"><i class="fas fa-file-upload"></i>Uploader</a>
       <?php endif; ?>
       <?php if ($_SESSION['role'] == "Member"): ?>
-      <a href="uploader.php" target="_blank"><i class="fas fa-user-cog"></i>Uploader</a>
+      <a href="uploader.php" target="_blank"><i class="fas ffa-file-upload"></i>Uploader</a>
       <?php endif; ?>
       <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </div>

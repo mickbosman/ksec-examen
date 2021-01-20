@@ -23,7 +23,7 @@ $records = mysqli_query($db,"select * from videos"); // fetch data from database
 while($data = mysqli_fetch_array($records))
 {
 ?>
-<div class="">
+<div class="test">
   <div class="videobox">
   <tr>
     <video width="400px" height="225px" controls>
@@ -41,19 +41,49 @@ while($data = mysqli_fetch_array($records))
     <td>Description=<?php echo $data['description']; ?></td>
     <td><br></td>
     <td><br></td>
-    <td><a href="../edit.php?id=<?php echo $data['id']; ?>">Edit</a></td>
-    <td><a href="../delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
+    <td><a class="settings_edit" href="../edit.php?id=<?php echo $data['id']; ?>">Edit</a></td>
+    <td><a class="settings_delete" href="../delete.php?id=<?php echo $data['id']; ?>">Delete</a></td>
   </tr>
   </div>
 </div>
 
 <style media="screen">
+
+.test{
+  float: left;
+}
+
+.settings_edit{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  width: 110px;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.settings_delete{
+  background-color: red; /* Green */
+  border: none;
+  color: white;
+  width: 110px;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 .videobox{
 color: white;
-background-color: #484848;
+background-color: #2f3947;
 width: 400px;
 height: 450px;
-margin-bottom: 10px;
+margin-bottom: 25px;
+margin-right: 50px;
 }
 
 
