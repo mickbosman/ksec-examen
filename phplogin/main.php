@@ -37,6 +37,29 @@ function check_loggedin($pdo, $redirect_file = 'index.php') {
     	exit;
     }
 }
+
+function loginAttempts($pdo, $update = TRUE) {
+	$ip = $_SERVER['REMOTE_ADDR'];
+	$now = date('Y-m-d H:i:s');
+	if ($update) {
+		$stmt = $pdo->prepare('INSERT INTO login_attempts (ip_address, `date`) VALUES (?,?) ON DUPLICATE KEY UPDATE attempts_left = attempts_left - 1, `date` = VALUES(`date`)');
+		$stmt->execute([$ip,$now]);
+	}
+	$stmt = $pdo->prepare('SELECT * FROM login_attempts WHERE ip_address = ?');
+	$stmt->execute([$ip]);
+	$login_attempts = $stmt->fetch(PDO::FETCH_ASSOC);
+	if ($login_attempts) {
+		// The user can try to login after 1 day... change the "+1 day" if you want increase/decrease this date.
+		$expire = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($login_attempts['date'])));
+		if ($now > $expire) {
+			$stmt = $pdo->prepare('DELETE FROM login_attempts WHERE ip_address = ?');
+			$stmt->execute([$ip]);
+			$login_attempts = array();
+		}
+	}
+	return $login_attempts;
+}
+
 // Send activation email function
 function send_activation_email($email, $code) {
 	$subject = 'Account Activation Required';

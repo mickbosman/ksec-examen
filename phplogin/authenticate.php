@@ -1,7 +1,15 @@
 <?php
 include 'main.php';
+
+$login_attempts = loginAttempts($pdo, FALSE);
+if ($login_attempts && $login_attempts['attempts_left'] <= 0) {
+	exit('You cannot login right now please try again later!');
+}
+
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if (!isset($_POST['username'], $_POST['password'])) {
+	$login_attempts = loginAttempts($pdo);
+
 	// Could not get the data that should have been sent.
 	exit('Please fill both the username and password field!');
 }
@@ -42,10 +50,12 @@ if ($account) {
 		}
 	} else {
 		// Incorrect password
-		echo 'Incorrect username and/or password!';
+		$login_attempts = loginAttempts($pdo, TRUE);
+echo 'Incorrect username and/or password, you have ' . $login_attempts['attempts_left'] . ' attempts remaining!';
 	}
 } else {
 	// Incorrect username
-	echo 'Incorrect username and/or password!';
+	$login_attempts = loginAttempts($pdo, TRUE);
+echo 'Incorrect username and/or password, you have ' . $login_attempts['attempts_left'] . ' attempts remaining!';
 }
 ?>

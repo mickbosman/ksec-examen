@@ -54,6 +54,19 @@ check_loggedin($pdo);
 <?php
 include ('db.php');
 
+if (!isset($_FILES['upload'])) {
+	$errors[] = 'You forgot to select a video for upload.';
+	} else {
+		$allowed = array("video/mp4");
+		if (in_array($_FILES['upload']['type'], $allowed)) {
+			// Get extension to variable. (Added this in case I want to allow other formats in future.)
+			$oldvidname = $_FILES['upload']['name'];
+			$ext = substr($oldvidname,strpos($oldvidname, '.'));
+		} else {
+			$errors[] = 'The file you selected is not an mp4!';
+		}
+	}
+
 if (isset($_POST['upload'])) {
 
   $tmp = $_FILES['file']['tmp_name'];
