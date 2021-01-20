@@ -64,6 +64,8 @@ if (isset($_COOKIE['rememberme']) && !empty($_COOKIE['rememberme'])) {
 			xhr.onload = function () {
 				if (this.responseText.toLowerCase().indexOf("success") !== -1) {
 					window.location.href = "home.php";
+        } else if (this.responseText.indexOf("2FA") !== -1) {
+  window.location.href = this.responseText.replace("2FA: ", "");
 				} else {
 					document.querySelector(".msg").innerHTML = this.responseText;
 				}

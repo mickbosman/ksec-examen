@@ -27,7 +27,11 @@ if ($account) {
 		if (account_activation && $account['activation_code'] != 'activated') {
 			// User has not activated their account, output the message
 			echo 'Please activate your account to login, click <a href="resendactivation.php">here</a> to resend the activation email!';
-		} else {
+		} else if ($_SERVER['REMOTE_ADDR'] != $account['ip']) {
+	// Two-factor authentication required
+	$_SESSION['2FA'] = uniqid();
+	echo '2FA: twofactor.php?id=' . $account['id'] . '&email=' . $account['email'] . '&code=' . $_SESSION['2FA'];
+} else {
 			// Verification success! User has loggedin!
 			// Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
 			session_regenerate_id();

@@ -40,12 +40,12 @@ if ($account) {
 	echo 'Username and/or email exists!';
 } else {
 	// Als de naam niet bestaat, Maak hem dan aan
-	$stmt = $pdo->prepare('INSERT INTO accounts (username, password, email, activation_code) VALUES (?, ?, ?, ?)');
+	$stmt = $pdo->prepare('INSERT INTO accounts (username, password, email, activation_code, ip) VALUES (?, ?, ?, ?, ?)');
 	// Wachtwoord hash
 	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	$uniqid = account_activation ? uniqid() : 'activated';
-	$stmt->execute([ $_POST['username'], $password, $_POST['email'], $uniqid ]);
-	if (account_activation) {
+	$ip = $_SERVER['REMOTE_ADDR'];
+$stmt->execute([ $_POST['username'], $password, $_POST['email'], $uniqid, $ip ]);	if (account_activation) {
 		// Account activation required, send the user the activation email with the "send_activation_email" function from the "main.php" file
 		// email verificatie
 		send_activation_email($_POST['email'], $uniqid);
