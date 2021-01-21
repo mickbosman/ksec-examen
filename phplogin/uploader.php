@@ -59,7 +59,7 @@ if (!isset($_FILES['upload'])) {
 	} else {
 		$allowed = array("video/mp4");
 		if (in_array($_FILES['upload']['type'], $allowed)) {
-			// Get extension to variable. (Added this in case I want to allow other formats in future.)
+			// Krijgt extensie naar variabele. 
 			$oldvidname = $_FILES['upload']['name'];
 			$ext = substr($oldvidname,strpos($oldvidname, '.'));
 		} else {

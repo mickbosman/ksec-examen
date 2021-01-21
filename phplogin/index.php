@@ -1,18 +1,18 @@
 <?php
 include 'main.php';
-// If the user is logged-in redirect them to the home page
+// Als de gerbuiker al ingelogt is gaat hij naar de home pagina.
 if (isset($_SESSION['loggedin'])) {
     header('Location: home.php');
     exit;
 }
-// Also check if the user is remembered, if so redirect them to the home page
+// Kijkt ook of de gerbuiker is herinnerd, zo ja dan gaat hij naar de home pagina
 if (isset($_COOKIE['rememberme']) && !empty($_COOKIE['rememberme'])) {
-	// If the remember me cookie matches one in the database then we can update the session variables and the user will be logged-in.
+	// Als de remember me cookie overeenkomt met een in de database, kunnen we de sessievariabelen bijwerken en wordt de gebruiker ingelogd.
 	$stmt = $pdo->prepare('SELECT * FROM accounts WHERE rememberme = ?');
 	$stmt->execute([ $_COOKIE['rememberme'] ]);
 	$account = $stmt->fetch(PDO::FETCH_ASSOC);
 	if ($account) {
-		// Found a match, user is "remembered" log them in automatically
+		// De match is gevonden, de gerbuiker is "rememberd" de gerbuiker word nu automatisch ingelogd.
 		session_regenerate_id();
 		$_SESSION['loggedin'] = TRUE;
 		$_SESSION['name'] = $account['username'];

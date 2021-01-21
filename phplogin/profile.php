@@ -1,16 +1,16 @@
 <?php
 include 'main.php';
 check_loggedin($pdo);
-// output message (errors, etc)
+// laat bericht zien (errors, etc)
 $msg = '';
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
+// We hebben het wachtwoord of de e-mail niet opgeslagen in sessies, dus in plaats daarvan kunnen we de resultaten uit de database halen.
 $stmt = $pdo->prepare('SELECT * FROM accounts WHERE id = ?');
-// In this case we can use the account ID to get the account info.
+// In dit geval kunnen we de account-ID gebruiken om de accountinformatie te krijgen.
 $stmt->execute([ $_SESSION['id'] ]);
 $account = $stmt->fetch(PDO::FETCH_ASSOC);
-// Handle edit profile post data
+// dit Behandeld postgegevens om het profiel te bewerken
 if (isset($_POST['username'], $_POST['password'], $_POST['cpassword'], $_POST['email'])) {
-	// Make sure the submitted registration values are not empty.
+	// Zorgt ervoor dat de ingediende registratiewaarden niet leeg zijn.
 	if (empty($_POST['username']) || empty($_POST['email'])) {
 		$msg = 'The input fields must not be empty!';
 	} else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
@@ -23,28 +23,28 @@ if (isset($_POST['username'], $_POST['password'], $_POST['cpassword'], $_POST['e
 		$msg = 'Passwords do not match!';
 	}
 	if (empty($msg)) {
-		// Check if new username or email already exists in database
+		// Controleerd of er al een nieuwe gebruikersnaam of e-mailadres in de database bestaat
 		$stmt = $pdo->prepare('SELECT COUNT(*) FROM accounts WHERE (username = ? OR email = ?) AND username != ? AND email != ?');
 		$stmt->execute([ $_POST['username'], $_POST['email'], $_SESSION['name'], $account['email'] ]);
 		if ($result = $stmt->fetchColumn()) {
 			$msg = 'Account already exists with that username and/or email!';
 		} else {
-			// no errors occured, update the account...
+			// er zijn geen errors opgetreden, het accout word geupdate.
 			$uniqid = account_activation && $account['email'] != $_POST['email'] ? uniqid() : $account['activation_code'];
 			$stmt = $pdo->prepare('UPDATE accounts SET username = ?, password = ?, email = ?, activation_code = ? WHERE id = ?');
-			// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
+			// het wachtwoord word gehashed in de database en gebruikt password_verify wanneer een gebruiker inlogt.
 			$password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $account['password'];
 			$stmt->execute([ $_POST['username'], $password, $_POST['email'], $uniqid, $_SESSION['id'] ]);
-			// Update the session variables
+			// Werkt de sessievariabelen bij
 			$_SESSION['name'] = $_POST['username'];
 			if (account_activation && $account['email'] != $_POST['email']) {
-				// Account activation required, send the user the activation email with the "send_activation_email" function from the "main.php" file
+				// Accountactivering is vereist, dus dit stuurt de gebruiker de activerings e-mail met de functie "send_activation_email" vanuit het bestand "main.php"
 				send_activation_email($_POST['email'], $uniqid);
-				// Log the user out
+				// logt de gebruiker uit
 				unset($_SESSION['loggedin']);
 				$msg = 'You have changed your email address, you need to re-activate your account!';
 			} else {
-				// profile updated redirect the user back to the profile page and not the edit profile page
+				// het profiel word bijgewerkt en leidt de gebruiker terug naar de profielpagina en niet naar profielpagina bewerken
 				header('Location: profile.php');
 				exit;
 			}
