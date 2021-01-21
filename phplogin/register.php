@@ -1,6 +1,6 @@
 <?php
 include 'main.php';
-// Controle of alle data is ingevuld
+// ! Controle of alle data is ingevuld
 if (!isset($_POST['username'], $_POST['password'], $_POST['cpassword'], $_POST['email'])) {
 	// Bericht als dat niet zo is
 	exit('Please complete the registration form!');

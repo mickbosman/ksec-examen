@@ -6,7 +6,7 @@ if ($login_attempts && $login_attempts['attempts_left'] <= 0) {
 	exit('You cannot login right now please try again later!');
 }
 
-// ! Hier kijken we of de data van de login is verstuurd, isset() kijkt of de data bestaat.
+// Hier kijken we of de data van de login is verstuurd, isset() kijkt of de data bestaat.
 if (!isset($_POST['username'], $_POST['password'])) {
 	$login_attempts = loginAttempts($pdo);
 
