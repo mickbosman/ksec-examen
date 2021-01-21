@@ -16,7 +16,7 @@ check_loggedin($pdo);
 <body class="loggedin">
   <nav class="navtop">
     <div>
-      <h1>Website Title</h1>
+      <h1>VideoBox</h1>
       <a href="home.php"><i class="fas fa-home"></i>Home</a>
       <a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
       <?php if ($_SESSION['role'] == 'Admin'): ?>
@@ -57,14 +57,19 @@ include ('db.php');
 if (!isset($_FILES['upload'])) {
 	$errors[] = 'You forgot to select a video for upload.';
 	} else {
+    // ! Er mag alleen mp4 geupload worden
 		$allowed = array("video/mp4");
 		if (in_array($_FILES['upload']['type'], $allowed)) {
-			// Krijgt extensie naar variabele. 
+			// ! checkt wat er na de punt staat, als dat geen mp4 is krijg je een error
 			$oldvidname = $_FILES['upload']['name'];
 			$ext = substr($oldvidname,strpos($oldvidname, '.'));
 		} else {
 			$errors[] = 'The file you selected is not an mp4!';
 		}
+    // ! Maximaale grote: 7gb
+    if ($size > 70000000) {
+      $errors[] = 'The file exceeds maximun size';
+    }
 	}
 
 if (isset($_POST['upload'])) {
@@ -72,6 +77,7 @@ if (isset($_POST['upload'])) {
   $tmp = $_FILES['file']['tmp_name'];
   $description = $_POST['description'];
   $title = $_POST['title'];
+  $size = $_FILES['file']['size'];
   $name = $_FILES['file']['name'];
 
   $log = "User uploaded a file: $title , $name , $description";

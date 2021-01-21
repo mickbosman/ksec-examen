@@ -1,23 +1,23 @@
 <?php
 include 'main.php';
-
+// ! Kijkt hoeveel login attempts er nog over zijn. Goed tegen brute force aanvallen
 $login_attempts = loginAttempts($pdo, FALSE);
 if ($login_attempts && $login_attempts['attempts_left'] <= 0) {
 	exit('You cannot login right now please try again later!');
 }
 
-// Hier kijken we of de data van de login is verstuurd, isset() kijkt of de data bestaat.
+// ! Hier kijken we of de data van de login is verstuurd, isset() kijkt of de data bestaat.
 if (!isset($_POST['username'], $_POST['password'])) {
 	$login_attempts = loginAttempts($pdo);
 
 	// Kan de data niet krijgen wat verstuurd had moeten worden.
 	exit('Please fill both the username and password field!');
 }
-// Bereid ons SQL voor.
+// ! Bereid SQL statments voor. Dit gaat SQL injections tegen
 $stmt = $pdo->prepare('SELECT * FROM accounts WHERE username = ?');
-// De username is een string dus we gebruiken "s"
 $stmt->execute([ $_POST['username'] ]);
 $account = $stmt->fetch(PDO::FETCH_ASSOC);
+
 // Kijkt of het acount bestaat
 if ($account) {
 	// Het account bestaat dus bevistigen we het wachtwoord.

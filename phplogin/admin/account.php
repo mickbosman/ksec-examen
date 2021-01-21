@@ -11,14 +11,14 @@ $account = array(
 );
 $roles = array('Member', 'Admin');
 if (isset($_GET['id'])) {
-    // Get the account from the database
+    // ! Pakt alle accounts van de database
     $stmt = $pdo->prepare('SELECT * FROM accounts WHERE id = ?');
     $stmt->execute([ $_GET['id'] ]);
     $account = $stmt->fetch(PDO::FETCH_ASSOC);
-    // ID param exists, edit an existing account
+    // edit een account
     $page = 'Edit';
     if (isset($_POST['submit'])) {
-        // Update the account
+        // verander account
         $stmt = $pdo->prepare('UPDATE accounts SET username = ?, password = ?, email = ?, activation_code = ?, rememberme = ?, role = ? WHERE id = ?');
         $password = $account['password'] != $_POST['password'] ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $account['password'];
         $stmt->execute([ $_POST['username'], $password, $_POST['email'], $_POST['activation_code'], $_POST['rememberme'], $_POST['role'], $_GET['id'] ]);
@@ -26,14 +26,14 @@ if (isset($_GET['id'])) {
         exit;
     }
     if (isset($_POST['delete'])) {
-        // Delete the account
+        // Verweider account
         $stmt = $pdo->prepare('DELETE FROM accounts WHERE id = ?');
         $stmt->execute([ $_GET['id'] ]);
         header('Location: index.php');
         exit;
     }
 } else {
-    // Create a new account
+    // Maak nieuw account aan
     $page = 'Create';
     if (isset($_POST['submit'])) {
         $stmt = $pdo->prepare('INSERT IGNORE INTO accounts (username,password,email,activation_code,rememberme,role) VALUES (?,?,?,?,?,?)');

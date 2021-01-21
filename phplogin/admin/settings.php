@@ -29,6 +29,7 @@ while($data = mysqli_fetch_array($records))
     <video width="400px" height="225px" controls>
 		  <source src="../videos/<?php echo $data['name']; ?>" type="video/mp4">
 		</video>
+    <!-- alle video's -->
     <td>ID=<?php echo $data['id']; ?></td>
     <td><br></td>
     <td><br></td>

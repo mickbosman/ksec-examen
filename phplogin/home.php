@@ -14,7 +14,7 @@ check_loggedin($pdo);
 	<body class="loggedin">
 		<nav class="navtop">
 			<div>
-				<h1>Website Title</h1>
+				<h1>Videbox</h1>
 				<a href="home.php"><i class="fas fa-home"></i>Home</a>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<?php if ($_SESSION['role'] == 'Admin'): ?>

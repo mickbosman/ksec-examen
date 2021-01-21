@@ -8,7 +8,7 @@ if (isset($_GET['email'], $_GET['code']) && !empty($_GET['code'])) {
 	// Dit slaat het resultaat op zodat we kunnen zien of het account bestaat in de database.
 	$account = $stmt->fetch(PDO::FETCH_ASSOC);
 	if ($account) {
-		// Het accound bestaat met de aangevraagde email en code.
+		// Het account bestaat met de aangevraagde email en code.
 		$stmt = $pdo->prepare('UPDATE accounts SET activation_code = ? WHERE email = ? AND activation_code = ?');
 		// Dit set de nieuwe activatie code naar 'activated' zodat we kunnen zien of de gebruiker zijn account heeft geactiveerd.
 		$activated = 'activated';

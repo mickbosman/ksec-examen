@@ -6,7 +6,7 @@ check_loggedin($pdo, '../index.php');
 $stmt = $pdo->prepare('SELECT * FROM accounts WHERE id = ?');
 $stmt->execute([ $_SESSION['id'] ]);
 $account = $stmt->fetch(PDO::FETCH_ASSOC);
-// Check if user is an admin...
+// ! Check if user is an admin...
 if ($account['role'] != 'Admin') {
     exit('You do not have permission to access this page!');
 }
