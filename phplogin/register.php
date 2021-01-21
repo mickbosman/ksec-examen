@@ -46,7 +46,6 @@ if ($account) {
 	$uniqid = account_activation ? uniqid() : 'activated';
 	$ip = $_SERVER['REMOTE_ADDR'];
 $stmt->execute([ $_POST['username'], $password, $_POST['email'], $uniqid, $ip ]);	if (account_activation) {
-		// Account activation required, send the user the activation email with the "send_activation_email" function from the "main.php" file
 		// email verificatie
 		send_activation_email($_POST['email'], $uniqid);
 		echo 'Please check your email to activate your account!';
