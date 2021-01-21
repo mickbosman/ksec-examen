@@ -5,6 +5,6 @@ if (isset($_COOKIE['rememberme'])) {
     unset($_COOKIE['rememberme']);
     setcookie('rememberme', '', time() - 3600);
 }
-// Redirect to the login page:
+// Verwijst naar de login pagina:
 header('Location: index.php');
 ?>

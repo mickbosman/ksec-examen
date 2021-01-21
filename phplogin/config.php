@@ -1,19 +1,18 @@
 <?php
-// database hostname, you don't usually need to change this
+// database hostnaam,
 define('db_host', 'localhost');
 // database username
 define('db_user', 'root');
-// database password
+// database wachtwoord
 define('db_pass', '');
-// database name
+// database naam
 define('db_name', 'phplogin');
-// database charset, change this only if utf8 is not supported by your language
+// database charset,
 define('db_charset', 'utf8');
-// Email activation variables
-// account activation required?
+// Email activatie variables
 define('account_activation', false);
-// Change "Your Company Name" and "yourdomain.com", do not remove the < and >
-define('mail_from', 'Your Company Name <noreply@yourdomain.com>');
-// Link to activation file, update this
+// Onze mail
+define('mail_from', 'Videobox <noreply@videobox.com>');
+// Link naar activatie bestand, 
 define('activation_link', 'http://yourdomain.com/phplogin/activate.php');
 ?>

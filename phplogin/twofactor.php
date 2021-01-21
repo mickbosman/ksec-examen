@@ -1,20 +1,20 @@
 <?php
 include 'main.php';
-// Output message
+// laat bericht zien
 $msg = '';
-// Verify the ID and email provided
+// deze lijn controleerd de opgegeven ID en e-mail
 if (isset($_GET['id'], $_GET['email'], $_GET['code'], $_SESSION['2FA']) && $_SESSION['2FA'] == $_GET['code']) {
-    // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
+    // dit berijd ons Sql voor.
     $stmt = $pdo->prepare('SELECT * FROM accounts WHERE id = ? AND email = ?');
     $stmt->execute([ $_GET['id'], $_GET['email'] ]);
     $account = $stmt->fetch(PDO::FETCH_ASSOC);
-    // If the account exists with the email & ID provided...
+    // Als het account bestaat met het opgegeven e-mailadres en ID ...
     if ($account) {
-        // Account exist
+        // Account bestaat
         if (isset($_POST['code'])) {
-            // Code submitted via the form
+            // Code verstuurd via het formulier
             if ($_POST['code'] == $account['2FA_code']) {
-                // Code accepted, update the IP address
+                // Code geaccepteerd, update het IP-adres
                 $ip = $_SERVER['REMOTE_ADDR'];
                 $stmt = $pdo->prepare('UPDATE accounts SET ip = ? WHERE id = ?');
                 $stmt->execute([ $ip, $_GET['id'] ]);
@@ -23,7 +23,7 @@ if (isset($_GET['id'], $_GET['email'], $_GET['code'], $_SESSION['2FA']) && $_SES
                 $msg = 'Incorrect code provided!';
             }
         } else {
-            // Send the access code email using the twofactor.html template
+            // Stuurt de toegangscode e-mail
             $code = strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 6));
             $stmt = $pdo->prepare('UPDATE accounts SET 2FA_code = ? WHERE id = ?');
             $stmt->execute([ $code, $_GET['id'] ]);

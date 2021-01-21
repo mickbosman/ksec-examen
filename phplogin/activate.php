@@ -1,16 +1,16 @@
 <?php
 include 'main.php';
 $msg = '';
-// First we check if the email and code exists...
+// Hier kijken we of de Email en code bestaan.
 if (isset($_GET['email'], $_GET['code']) && !empty($_GET['code'])) {
 	$stmt = $pdo->prepare('SELECT * FROM accounts WHERE email = ? AND activation_code = ?');
 	$stmt->execute([ $_GET['email'], $_GET['code'] ]);
-	// Store the result so we can check if the account exists in the database.
+	// Dit slaat het resultaat op zodat we kunnen zien of het account bestaat in de database.
 	$account = $stmt->fetch(PDO::FETCH_ASSOC);
 	if ($account) {
-		// Account exists with the requested email and code.
+		// Het accound bestaat met de aangevraagde email en code.
 		$stmt = $pdo->prepare('UPDATE accounts SET activation_code = ? WHERE email = ? AND activation_code = ?');
-		// Set the new activation code to 'activated', this is how we can check if the user has activated their account.
+		// Dit set de nieuwe activatie code naar 'activated' zodat we kunnen zien of de gebruiker zijn account heeft geactiveerd.
 		$activated = 'activated';
 		$stmt->execute([ $activated, $_GET['email'], $_GET['code'] ]);
 		$msg = 'Your account is now activated, you can now login!<br><a href="index.php">Login</a>';

@@ -1,16 +1,16 @@
 <?php
 include 'main.php';
-// Output message
+// Laat bericht zien
 $msg = '';
-// Now we check if the email from the resend activation form was submitted, isset() will check if the email exists.
+// dit controleerd of de e-mail van het activerings formulier opnieuw is verzonden, isset () controleert of de e-mail bestaat.
 if (isset($_POST['email'])) {
-    // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
+    // dit bereid onze SQL voor,
     $stmt = $pdo->prepare('SELECT * FROM accounts WHERE email = ? AND activation_code != "" AND activation_code != "activated"');
     $stmt->execute([ $_POST['email'] ]);
     $account = $stmt->fetch(PDO::FETCH_ASSOC);
-    // If the account exists with the email
+    // Als het account bestaat met de e-mail
     if ($account) {
-        // Account exist, the $msg variable will be used to show the output message (on the HTML form)
+        // Account bestaat, de $ msg-variabele wordt gebruikt om het uitvoerbericht te tonen (op het HTML-formulier)
         send_activation_email($_POST['email'], $account['activation_code']);
         $msg = 'Activaton link has been sent to your email!';
     } else {

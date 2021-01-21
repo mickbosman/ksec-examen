@@ -6,26 +6,25 @@ if ($login_attempts && $login_attempts['attempts_left'] <= 0) {
 	exit('You cannot login right now please try again later!');
 }
 
-// Now we check if the data from the login form was submitted, isset() will check if the data exists.
+// Hier kijken we of de data van de login is verstuurd, isset() kijkt of de data bestaat.
 if (!isset($_POST['username'], $_POST['password'])) {
 	$login_attempts = loginAttempts($pdo);
 
-	// Could not get the data that should have been sent.
+	// Kan de data niet krijgen wat verstuurd had moeten worden.
 	exit('Please fill both the username and password field!');
 }
-// Prepare our SQL, preparing the SQL statement will prevent SQL injection.
+// Bereid ons SQL voor.
 $stmt = $pdo->prepare('SELECT * FROM accounts WHERE username = ?');
-// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+// De username is een string dus we gebruiken "s"
 $stmt->execute([ $_POST['username'] ]);
 $account = $stmt->fetch(PDO::FETCH_ASSOC);
-// Check if the account exists:
+// Kijkt of het acount bestaat
 if ($account) {
-	// Account exists, now we verify the password.
-	// Note: remember to use password_hash in your registration file to store the hashed passwords.
+	// Het account bestaat dus bevistigen we het wachtwoord.
 	if (password_verify($_POST['password'], $account['password'])) {
-		// Check if the account is activated
+		// Kijkt of het account is geactiveerd
 		if (account_activation && $account['activation_code'] != 'activated') {
-			// User has not activated their account, output the message
+			// De gerbuiker heeft zijn account nog niet geactiveerd, dus stuurd het een bericht
 			echo 'Please activate your account to login, click <a href="resendactivation.php">here</a> to resend the activation email!';
 
 				// 2-stap authenticator, staat uit omdat het niet werkt op localhost //
@@ -36,33 +35,33 @@ if ($account) {
 //	echo '2FA: twofactor.php?id=' . $account['id'] . '&email=' . $account['email'] . '&code=' . $_SESSION['2FA'];
 
 } else {
-			// Verification success! User has loggedin!
-			// Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
+			// Verificatie is geslaagd! De gebruiker is ingelogd!
+			// Maakt een sessie zodat we weten dat de gebruiker is ingelogd.
 			session_regenerate_id();
 			$_SESSION['loggedin'] = TRUE;
 			$_SESSION['name'] = $account['username'];
 			$_SESSION['id'] = $account['id'];
 			$_SESSION['role'] = $account['role'];
-			// IF the user checked the remember me check box:
+			// Als de gebruiker de remember me knop heeft aangevinkt:
 			if (isset($_POST['rememberme'])) {
-				// Create a hash that will be stored as a cookie and in the database, this will be used to identify the user, change "yoursecretkey" to anything you want.
+				// Maakt een Hash en word opgeslagen als een coockie en in de database, dit gebruiken we zodat we de gebruiker kunnen identificeren.
 				$cookiehash = !empty($account['rememberme']) ? $account['rememberme'] : password_hash($account['id'] . $account['username'] . 'yoursecretkey', PASSWORD_DEFAULT);
-				// The amount of days a user will be remembered:
+				// Het aantal dagen dat de gebruiker herinnerd word:
 				$days = 30;
 				setcookie('rememberme', $cookiehash, (int)(time()+60*60*24*$days));
-				/// Update the "rememberme" field in the accounts table
+				/// Dit werkt de "rememberme" feld bij in het accouts tabel.
 				$stmt = $pdo->prepare('UPDATE accounts SET rememberme = ? WHERE id = ?');
 				$stmt->execute([ $cookiehash, $account['id'] ]);
 			}
-			echo 'Success'; // Do not change this line as it will be used to check with the AJAX code
+			echo 'Success'; // Deze lijn checkt de AJAX code.
 		}
 	} else {
-		// Incorrect password
+		// Verkeerde wachtwoord
 		$login_attempts = loginAttempts($pdo, TRUE);
 echo 'Incorrect username and/or password, you have ' . $login_attempts['attempts_left'] . ' attempts remaining!';
 	}
 } else {
-	// Incorrect username
+	// Verkeerde wachtwoord
 	$login_attempts = loginAttempts($pdo, TRUE);
 echo 'Incorrect username and/or password, you have ' . $login_attempts['attempts_left'] . ' attempts remaining!';
 }
