@@ -18,7 +18,7 @@ $stmt = $pdo->prepare('SELECT * FROM accounts WHERE username = ?');
 $stmt->execute([ $_POST['username'] ]);
 $account = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Kijkt of het acount bestaat
+// ! Kijkt of het acount bestaat
 if ($account) {
 	// Het account bestaat dus bevistigen we het wachtwoord.
 	if (password_verify($_POST['password'], $account['password'])) {
