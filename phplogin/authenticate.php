@@ -27,12 +27,11 @@ if ($account) {
 			// De gerbuiker heeft zijn account nog niet geactiveerd, dus stuurd het een bericht
 			echo 'Please activate your account to login, click <a href="resendactivation.php">here</a> to resend the activation email!';
 
-				// 2-stap authenticator, staat uit omdat het niet werkt op localhost //
+				// 2-stap authenticator, staat uit omdat het niet werkt op localhost
 
-	//	} else if ($_SERVER['REMOTE_ADDR'] != $account['ip']) {
+ 	 //	} else if ($_SERVER['REMOTE_ADDR'] != $account['ip']) {
 	// Two-factor authentication required
-//	$_SESSION['2FA'] = uniqid();
-//	echo '2FA: twofactor.php?id=' . $account['id'] . '&email=' . $account['email'] . '&code=' . $_SESSION['2FA'];
+  //	$_SESSION['2FA'] = uniqid(); //	echo '2FA: twofactor.php?id=' . $account['id'] . '&email=' . $account['email'] . '&code=' . $_SESSION['2FA'];
 
 } else {
 			// Verificatie is geslaagd! De gebruiker is ingelogd!
