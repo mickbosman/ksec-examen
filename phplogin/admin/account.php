@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
         exit;
     }
     if (isset($_POST['delete'])) {
-        // Verweider account
+        // Verwijder account
         $stmt = $pdo->prepare('DELETE FROM accounts WHERE id = ?');
         $stmt->execute([ $_GET['id'] ]);
         header('Location: index.php');
