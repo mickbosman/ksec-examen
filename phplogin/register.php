@@ -5,16 +5,16 @@ if (!isset($_POST['username'], $_POST['password'], $_POST['cpassword'], $_POST['
 	// Bericht als dat niet zo is
 	exit('Please complete the registration form!');
 }
-// Check of er niks leeg is gelaten
+// ! Check of er niks leeg is gelaten
 if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email'])) {
 	// Bericht als dat wel zo is
 	exit('Please complete the registration form');
 }
-// Check of de email juist is
+// ! Check of de email juist is
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 	exit('Email is not valid!');
 }
-// Username mag alleen deze tekens bevatten
+// ! Username mag alleen deze tekens bevatten
 if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['username'])) {
     exit('Username is not valid!');
 }
@@ -26,11 +26,11 @@ if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
 if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['password'])) {
 	exit('Password is not valid!');
 }
-// Check of allebij de wachtwoord velden gelijk zijn
+// ! Check of allebij de wachtwoord velden gelijk zijn
 if ($_POST['cpassword'] != $_POST['password']) {
 	exit('Passwords do not match!');
 }
-// Check of er al een account is met deze naam
+// ! Check of er al een account is met deze naam
 $stmt = $pdo->prepare('SELECT id, password FROM accounts WHERE username = ? OR email = ?');
 $stmt->execute([ $_POST['username'], $_POST['email'] ]);
 $account = $stmt->fetch(PDO::FETCH_ASSOC);

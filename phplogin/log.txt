@@ -1,8 +1,2 @@
-127.0.0.1	01/19/21 09:28PM	User uploaded a file
-127.0.0.1	01/19/21 09:30PM	User uploaded a file
-127.0.0.1	01/19/21 09:34PM	User uploaded a file
-127.0.0.1	01/20/21 06:23AM	User deleted video id: 34
-127.0.0.1	01/20/21 07:19AM	 User deleted video id: 35
-::1	01/21/21 09:19PM	User deleted video id: 38
-::1	01/21/21 09:45PM	User uploaded a file: test , Laughing seagull.mp4 , test
-::1	01/22/21 09:24AM	User uploaded a file: test , Laughing seagull.mp4 , test::1	01/22/21 09:26AM	User deleted video id: 37::1	01/22/21 09:26AM	User deleted video id: 39::1	01/22/21 09:26AM	User deleted video id: 40::1	01/22/21 09:26AM	User deleted video id: 41::1	01/22/21 09:26AM	User deleted video id: 42::1	01/22/21 09:26AM	User deleted video id: 43::1	01/22/21 09:26AM	User deleted video id: 44::1	01/22/21 09:26AM	User deleted video id: 45::1	01/22/21 09:26AM	User deleted video id: 46
+::1	01/22/21 03:31PM	User uploaded a file: voorbeeld , Laughing seagull.mp4 , voorbeeld
+::1	01/22/21 03:33PM	User deleted video id: 54
